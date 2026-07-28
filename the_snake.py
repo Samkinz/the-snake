@@ -26,6 +26,9 @@ APPLE_COLOR = (255, 0, 0)
 # Цвет змейки
 SNAKE_COLOR = (0, 255, 0)
 
+# Цвет сетки
+GRID_COLOR = (28, 28, 28)
+
 # Скорость движения змейки:
 SPEED = 20
 
@@ -33,10 +36,22 @@ SPEED = 20
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), 0, 32)
 
 # Заголовок окна игрового поля:
-pygame.display.set_caption('Змейка')
+pygame.display.set_caption("Змейка")
 
 # Настройка времени:
 clock = pygame.time.Clock()
+
+
+def draw_grid():
+    """Рисует сетку"""
+
+    for y in range(0, 481, GRID_SIZE):
+        pygame.draw.line(screen, GRID_COLOR, (0, y), (SCREEN_WIDTH, y), 2)
+
+    for x in range(0, 641, GRID_SIZE):
+        pygame.draw.line(screen, GRID_COLOR, (x, 0), (x, SCREEN_HEIGHT), 2)
+
+    # pygame.draw.line(surface, color, start_pos, end_pos, width)
 
 
 # Тут опишите все классы игры.
@@ -46,17 +61,22 @@ clock = pygame.time.Clock()
 def main():
     # Инициализация PyGame:
     pygame.init()
+    draw_grid()
+    pygame.display.update()
+    running = True
     # Тут нужно создать экземпляры классов.
     ...
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+        clock.tick(SPEED)
 
-    # while True:
-    #     clock.tick(SPEED)
-
-        # Тут опишите основную логику игры.
-        # ...
+    # Тут опишите основную логику игры.
+    # ...
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
 
 
