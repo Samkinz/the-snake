@@ -1,15 +1,18 @@
 import pygame
 
-from gameparts.constants import BOARD_BACKGROUND_COLOR
-from gameparts.constants import SCREEN_HEIGHT
-from gameparts.constants import SCREEN_WIDTH
-from gameparts.constants import SPEED
+from gameparts.objects import Apple, Snake
+from gameparts.constants import (
+    BOARD_BACKGROUND_COLOR,
+    SCREEN_HEIGHT,
+    SCREEN_WIDTH,
+    SPEED,
+)
 from gameparts.field_rendering import draw_grid
-from gameparts.game_logic import check_apple_collision
-from gameparts.game_logic import check_self_collision
+from gameparts.game_logic import (
+    check_apple_collision,
+    check_self_collision,
+)
 from gameparts.key_processing import handle_keys
-from gameparts.objects import Apple
-from gameparts.objects import Snake
 
 # Настройка игрового окна:
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), 0, 32)
