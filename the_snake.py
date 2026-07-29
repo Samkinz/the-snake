@@ -1,17 +1,10 @@
 import pygame
 
-from gameparts.constants import (  # noqa: F401
+from gameparts.constants import (
     BOARD_BACKGROUND_COLOR,
-    DOWN,
-    GRID_HEIGHT,
-    GRID_SIZE,
-    GRID_WIDTH,
-    LEFT,
-    RIGHT,
     SCREEN_HEIGHT,
     SCREEN_WIDTH,
     SPEED,
-    UP,
 )
 from gameparts.field_rendering import draw_grid
 from gameparts.game_logic import (

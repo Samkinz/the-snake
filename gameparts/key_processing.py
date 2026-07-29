@@ -1,5 +1,6 @@
 import pygame
-from gameparts import constants
+
+import gameparts.constants as constants
 
 
 def handle_keys(event, game_object):

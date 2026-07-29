@@ -1,5 +1,6 @@
-from gameparts import constants
 import pygame
+
+import gameparts.constants as constants
 
 
 def draw_grid(screen):
