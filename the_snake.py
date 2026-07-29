@@ -1,5 +1,4 @@
 import pygame
-from gameparts import GameObject
 from gameparts import constants
 from gameparts import GameObject, Apple, Snake
 from gameparts.field_rendering import draw_grid
