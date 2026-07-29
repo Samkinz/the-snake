@@ -60,10 +60,10 @@ class Snake(GameObject):
             )
             pygame.draw.rect(screen, constants.BOARD_BACKGROUND_COLOR, last_rect)
 
-        def update_direction(self):
-            if self.next_direction:
-                self.direction = self.next_direction
-                self.next_direction = None
+    def update_direction(self):
+        if self.next_direction:
+            self.direction = self.next_direction
+            self.next_direction = None
 
 
 class Apple(GameObject):
