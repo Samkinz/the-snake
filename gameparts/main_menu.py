@@ -1,5 +1,5 @@
 import pygame
-from .score_manager import load_scores, save_score
+from .score_manager import load_scores
 
 
 def main_menu(screen):
