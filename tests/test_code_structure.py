@@ -12,7 +12,7 @@ EXPECTED_GAME_OBJECT_ATTRS = (
 @pytest.mark.parametrize(
     'attr_type, attr_name',
     EXPECTED_GAME_OBJECT_ATTRS,
-    ids=[elem[1] for elem in EXPECTED_GAME_OBJECT_ATTRS]
+    ids=[elem[1] for elem in EXPECTED_GAME_OBJECT_ATTRS],
 )
 def test_game_object_attributes(game_object, attr_type, attr_name):
     assert hasattr(game_object, attr_name), (
@@ -38,12 +38,11 @@ def test_apple_inherits_from_game_object(_the_snake):
 @pytest.mark.parametrize(
     'attr_type, attr_name',
     EXPECTED_APPLE_ATTRS,
-    ids=[elem[1] for elem in EXPECTED_APPLE_ATTRS]
+    ids=[elem[1] for elem in EXPECTED_APPLE_ATTRS],
 )
 def test_apple_attributes(apple, attr_type, attr_name):
     assert hasattr(apple, attr_name), (
-        f'Убедитесь, что у объектов класса `Apple` определен {attr_type} '
-        f'`{attr_name}`.'
+        f'Убедитесь, что у объектов класса `Apple` определен {attr_type} `{attr_name}`.'
     )
 
 
@@ -69,12 +68,11 @@ def test_snake_inherits_from_game_object(_the_snake):
 @pytest.mark.parametrize(
     'attr_type, attr_name',
     EXPECTED_SNAKE_ATTRS,
-    ids=[elem[1] for elem in EXPECTED_SNAKE_ATTRS]
+    ids=[elem[1] for elem in EXPECTED_SNAKE_ATTRS],
 )
 def test_snake_attributes(snake, attr_type, attr_name):
     assert hasattr(snake, attr_name), (
-        f'Убедитесь, что у объектов класса `Snake` определен {attr_type} '
-        f'`{attr_name}`.'
+        f'Убедитесь, что у объектов класса `Snake` определен {attr_type} `{attr_name}`.'
     )
 
 
@@ -99,7 +97,7 @@ EXPECTED_MODULE_ELEMENTS = (
 @pytest.mark.parametrize(
     'element_type, element_name',
     EXPECTED_MODULE_ELEMENTS,
-    ids=[elem[1] for elem in EXPECTED_MODULE_ELEMENTS]
+    ids=[elem[1] for elem in EXPECTED_MODULE_ELEMENTS],
 )
 def test_elements_exist(element_type, element_name, _the_snake):
     assert hasattr(_the_snake, element_name), (

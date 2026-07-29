@@ -1,6 +1,8 @@
-import pygame
-from gameparts import constants
 from random import randint
+
+import pygame
+
+from gameparts import constants
 
 
 class GameObject:
@@ -109,8 +111,6 @@ class Apple(GameObject):
         position_y = random_cell_y * constants.GRID_SIZE
 
         self.position = (position_x, position_y)
-
-        return None
 
     def draw(self, screen):
         """Отрисовка яблока."""

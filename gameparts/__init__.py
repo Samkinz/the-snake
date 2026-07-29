@@ -4,10 +4,10 @@
 логику игры, обработку управления и работу с результатами.
 """
 
-from .objects import Apple, Snake, GameObject  # noqa: F401
+from gameparts.objects import Apple, Snake, GameObject  # noqa: F401
 
 # Импорты для прохождения тестов
-from .constants import (  # noqa: F401
+from gameparts.constants import (  # noqa: F401
     DOWN,
     GRID_HEIGHT,
     GRID_SIZE,

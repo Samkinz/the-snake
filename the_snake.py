@@ -1,31 +1,29 @@
 import pygame
-from gameparts.constants import (
-    BOARD_BACKGROUND_COLOR,
-    SCREEN_HEIGHT,
-    SCREEN_WIDTH,
-    SPEED,
-)
 
 # Импорты для прохождения тестов
 from gameparts.constants import (  # noqa: F401
+    BOARD_BACKGROUND_COLOR,
     DOWN,
     GRID_HEIGHT,
     GRID_SIZE,
     GRID_WIDTH,
     LEFT,
     RIGHT,
+    SCREEN_HEIGHT,
+    SCREEN_WIDTH,
+    SPEED,
     UP,
 )
-from gameparts.objects import Apple, Snake, GameObject  # noqa: F401
 from gameparts.field_rendering import draw_grid
-from gameparts.key_processing import handle_keys
 from gameparts.game_logic import check_apple_collision, check_self_collision
+from gameparts.key_processing import handle_keys
+from gameparts.objects import Apple, GameObject, Snake  # noqa: F401
 
 # Настройка игрового окна:
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), 0, 32)
 
 # Заголовок окна игрового поля:
-pygame.display.set_caption("Змейка")
+pygame.display.set_caption('Змейка')
 
 # Настройка времени:
 clock = pygame.time.Clock()
@@ -40,6 +38,7 @@ def main():
 
     snake = Snake()
     apple = Apple()
+    print('tick 1')
 
     while running:
         for event in pygame.event.get():
@@ -70,5 +69,5 @@ def main():
         clock.tick(SPEED)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
