@@ -1,39 +1,13 @@
 from random import choice, randint
 
 import pygame
-
-# Константы для размеров поля и сетки:
-SCREEN_WIDTH, SCREEN_HEIGHT = 640, 480
-GRID_SIZE = 20
-GRID_WIDTH = SCREEN_WIDTH // GRID_SIZE
-GRID_HEIGHT = SCREEN_HEIGHT // GRID_SIZE
-
-# Направления движения:
-UP = (0, -1)
-DOWN = (0, 1)
-LEFT = (-1, 0)
-RIGHT = (1, 0)
-
-# Цвет фона - черный:
-BOARD_BACKGROUND_COLOR = (0, 0, 0)
-
-# Цвет границы ячейки
-BORDER_COLOR = (93, 216, 228)
-
-# Цвет яблока
-APPLE_COLOR = (255, 0, 0)
-
-# Цвет змейки
-SNAKE_COLOR = (0, 255, 0)
-
-# Цвет сетки
-GRID_COLOR = (28, 28, 28)
-
-# Скорость движения змейки:
-SPEED = 20
+from gameparts import GameObject
+from gameparts import constants
 
 # Настройка игрового окна:
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), 0, 32)
+screen = pygame.display.set_mode(
+    (constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT), 0, 32
+)
 
 # Заголовок окна игрового поля:
 pygame.display.set_caption("Змейка")
@@ -45,11 +19,15 @@ clock = pygame.time.Clock()
 def draw_grid():
     """Рисует сетку"""
 
-    for y in range(0, 481, GRID_SIZE):
-        pygame.draw.line(screen, GRID_COLOR, (0, y), (SCREEN_WIDTH, y), 2)
+    for y in range(0, 481, constants.GRID_SIZE):
+        pygame.draw.line(
+            screen, constants.GRID_COLOR, (0, y), (constants.SCREEN_WIDTH, y), 2
+        )
 
-    for x in range(0, 641, GRID_SIZE):
-        pygame.draw.line(screen, GRID_COLOR, (x, 0), (x, SCREEN_HEIGHT), 2)
+    for x in range(0, 641, constants.GRID_SIZE):
+        pygame.draw.line(
+            screen, constants.GRID_COLOR, (x, 0), (x, constants.SCREEN_HEIGHT), 2
+        )
 
     # pygame.draw.line(surface, color, start_pos, end_pos, width)
 
@@ -70,7 +48,7 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
-        clock.tick(SPEED)
+        clock.tick(constants.SPEED)
 
     # Тут опишите основную логику игры.
     # ...
