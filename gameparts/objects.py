@@ -1,21 +1,27 @@
 import pygame
 from gameparts import constants
-from random import choice, randint
+from random import randint
 
 
 class GameObject:
-    """Родительский класс объектов игры"""
+    """Родительский класс объектов игры."""
 
     def __init__(self):
-        self.position = (constants.SCREEN_WIDTH // 2, constants.SCREEN_HEIGHT // 2)
+        self.position = (
+            constants.SCREEN_WIDTH // 2,
+            constants.SCREEN_HEIGHT // 2,
+        )
+        self.body_color = None
 
     def draw(self, screen):
+        """Метод отображения в родительском классе"""
         pass
 
 
 class Snake(GameObject):
+    """Класс змейки."""
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
         self.length = 1
         self.positions: list[tuple[int, int]] = [self.position]
@@ -24,10 +30,20 @@ class Snake(GameObject):
         self.last = None
         self.body_color = constants.SNAKE_COLOR
 
+    def reset(self):
+        """Возвращает змейку в начальное состояние."""
+        self.length = 1
+        self.positions = [self.position]
+        self.direction = constants.RIGHT
+        self.next_direction = None
+        self.last = None
+
     def get_head_position(self):
+        """Определяет позицию головы"""
         return self.positions[0]
 
     def move(self):
+        """Определяет клетку, где будет голова змейки."""
         self.last = None
 
         head = self.get_head_position()
@@ -44,8 +60,11 @@ class Snake(GameObject):
             self.last = self.positions.pop()
 
     def draw(self, screen):
+        """Отрисовка змейки."""
         for position in self.positions:
-            rect = pygame.Rect(position, (constants.GRID_SIZE, constants.GRID_SIZE))
+            rect = pygame.Rect(
+                position, (constants.GRID_SIZE, constants.GRID_SIZE)
+            )
             pygame.draw.rect(screen, self.body_color, rect)
             pygame.draw.rect(screen, constants.BORDER_COLOR, rect, 1)
 
@@ -62,21 +81,27 @@ class Snake(GameObject):
             last_rect = pygame.Rect(
                 self.last, (constants.GRID_SIZE, constants.GRID_SIZE)
             )
-            pygame.draw.rect(screen, constants.BOARD_BACKGROUND_COLOR, last_rect)
+            pygame.draw.rect(
+                screen, constants.BOARD_BACKGROUND_COLOR, last_rect
+            )
 
     def update_direction(self):
+        """Обновляет направление движения змейки."""
         if self.next_direction:
             self.direction = self.next_direction
             self.next_direction = None
 
 
 class Apple(GameObject):
+    """Класс яблока."""
+
     def __init__(self):
         super().__init__()
         self.body_color = constants.APPLE_COLOR
         self.randomize_position()
 
     def randomize_position(self):
+        """Определения позиции яблока."""
         random_cell_x = randint(0, constants.GRID_WIDTH - 1)
         position_x = random_cell_x * constants.GRID_SIZE
 
@@ -88,6 +113,9 @@ class Apple(GameObject):
         return None
 
     def draw(self, screen):
-        rect = pygame.Rect(self.position, (constants.GRID_SIZE, constants.GRID_SIZE))
+        """Отрисовка яблока."""
+        rect = pygame.Rect(
+            self.position, (constants.GRID_SIZE, constants.GRID_SIZE)
+        )
         pygame.draw.rect(screen, self.body_color, rect)
         pygame.draw.rect(screen, constants.BORDER_COLOR, rect, 1)

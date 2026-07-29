@@ -1,14 +1,28 @@
 import pygame
-from gameparts import constants
-from gameparts import GameObject, Apple, Snake
+from gameparts.constants import (
+    BOARD_BACKGROUND_COLOR,
+    SCREEN_HEIGHT,
+    SCREEN_WIDTH,
+    SPEED,
+)
+
+# Импорты для прохождения тестов
+from gameparts.constants import (  # noqa: F401
+    DOWN,
+    GRID_HEIGHT,
+    GRID_SIZE,
+    GRID_WIDTH,
+    LEFT,
+    RIGHT,
+    UP,
+)
+from gameparts.objects import Apple, Snake, GameObject  # noqa: F401
 from gameparts.field_rendering import draw_grid
 from gameparts.key_processing import handle_keys
 from gameparts.game_logic import check_apple_collision, check_self_collision
 
 # Настройка игрового окна:
-screen = pygame.display.set_mode(
-    (constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT), 0, 32
-)
+screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), 0, 32)
 
 # Заголовок окна игрового поля:
 pygame.display.set_caption("Змейка")
@@ -18,6 +32,7 @@ clock = pygame.time.Clock()
 
 
 def main():
+    """Точка входа в игру"""
     running = True
     pygame.init()
     draw_grid(screen)
@@ -42,7 +57,7 @@ def main():
         if check_self_collision(snake):
             running = False
 
-        screen.fill(constants.BOARD_BACKGROUND_COLOR)
+        screen.fill(BOARD_BACKGROUND_COLOR)
         draw_grid(screen)
 
         apple.draw(screen)
@@ -52,15 +67,8 @@ def main():
 
         pygame.display.update()
 
-        clock.tick(constants.SPEED)
+        clock.tick(SPEED)
 
 
 if __name__ == "__main__":
     main()
-
-
-# Метод обновления направления после нажатия на кнопку
-# def update_direction(self):
-#     if self.next_direction:
-#         self.direction = self.next_direction
-#         self.next_direction = None
