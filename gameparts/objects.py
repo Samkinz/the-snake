@@ -28,6 +28,8 @@ class Snake(GameObject):
         return self.positions[0]
 
     def move(self):
+        self.last = None
+
         head = self.get_head_position()
         x_pos = (
             head[0] + self.direction[0] * constants.GRID_SIZE
@@ -37,10 +39,12 @@ class Snake(GameObject):
         ) % constants.SCREEN_HEIGHT
 
         self.positions.insert(0, (x_pos, y_pos))
-        self.last = self.positions.pop()
+
+        if len(self.positions) > self.length:
+            self.last = self.positions.pop()
 
     def draw(self, screen):
-        for position in self.positions[:-1]:
+        for position in self.positions:
             rect = pygame.Rect(position, (constants.GRID_SIZE, constants.GRID_SIZE))
             pygame.draw.rect(screen, self.body_color, rect)
             pygame.draw.rect(screen, constants.BORDER_COLOR, rect, 1)
