@@ -9,7 +9,7 @@ from gameparts.game_logic import (
     spawn_apple,
 )
 from gameparts.score_manager import save_score, load_scores
-from gameparts import main_menu
+from gameparts.main_menu import main_menu
 
 # Настройка игрового окна:
 screen = pygame.display.set_mode(

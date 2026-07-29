@@ -27,3 +27,8 @@ GRID_COLOR = (28, 28, 28)
 
 # Скорость движения змейки:
 SPEED = 10
+
+# Шрифты
+MENU_FONT_SIZE = 25
+TITLE_FONT_SIZE = 50
+SCORE_FONT_SIZE = 25
