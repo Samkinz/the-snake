@@ -16,3 +16,10 @@ def check_apple_collision(snake, apple):
         return True
 
     return False
+
+
+def spawn_apple(apple, snake):
+    apple.randomize_position()
+
+    while apple.position in snake.positions:
+        apple.randomize_position()

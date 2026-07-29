@@ -1,6 +1,6 @@
 import pygame
 from gameparts import constants
-from random import choice, randint
+from random import randint
 
 
 class GameObject:
