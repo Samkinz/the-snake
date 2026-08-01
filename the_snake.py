@@ -40,7 +40,7 @@ class GameObject:
 
 
 class Snake(GameObject):
-    """Создает объект змейки."""
+    """Представляет объект змейки."""
 
     def __init__(
         self,
@@ -48,13 +48,14 @@ class Snake(GameObject):
     ) -> None:
         super().__init__()
         self.reset()
+        self.direction: tuple[int, int] = RIGHT
         self.body_color: tuple[int, int, int] = body_color
 
     def reset(self) -> None:
         """Возвращает змейку в начальное состояние."""
         self.length: int = 1
         self.positions: list[tuple[int, int]] = [self.position]
-        self.direction: tuple[int, int] = choice([RIGHT, LEFT, UP, DOWN])
+        self.direction = choice([RIGHT, LEFT, UP, DOWN])
         self.last: tuple[int, int] | None = None
 
     def get_head_position(self) -> tuple[int, int]:
@@ -107,7 +108,7 @@ class Snake(GameObject):
 
 
 class Apple(GameObject):
-    """Класс яблока."""
+    """Представляет объект яблока."""
 
     def __init__(
         self,
@@ -207,26 +208,27 @@ def draw_cell_border(
     )
 
 
-def handle_keys(event, game_object) -> bool:
+def handle_keys(game_object: Snake) -> bool:
     """Управляет змейкой с клавиатуры."""
-    if event.type == pygame.QUIT:
-        return False
-
-    if event.type == pygame.KEYDOWN:
-        if event.key == pygame.K_UP and game_object.direction != DOWN:
-            game_object.update_direction(UP)
-
-        elif event.key == pygame.K_DOWN and game_object.direction != UP:
-            game_object.update_direction(DOWN)
-
-        elif event.key == pygame.K_LEFT and game_object.direction != RIGHT:
-            game_object.update_direction(LEFT)
-
-        elif event.key == pygame.K_RIGHT and game_object.direction != LEFT:
-            game_object.update_direction(RIGHT)
-
-        elif event.key == pygame.K_ESCAPE:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
             return False
+
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_UP and game_object.direction != DOWN:
+                game_object.update_direction(UP)
+
+            elif event.key == pygame.K_DOWN and game_object.direction != UP:
+                game_object.update_direction(DOWN)
+
+            elif event.key == pygame.K_LEFT and game_object.direction != RIGHT:
+                game_object.update_direction(LEFT)
+
+            elif event.key == pygame.K_RIGHT and game_object.direction != LEFT:
+                game_object.update_direction(RIGHT)
+
+            elif event.key == pygame.K_ESCAPE:
+                return False
 
     return True
 
@@ -250,8 +252,7 @@ def main() -> None:
     running = True
 
     while running:
-        for event in pygame.event.get():
-            running = handle_keys(event, snake)
+        running = handle_keys(snake)
 
         snake.move()
 
@@ -260,7 +261,9 @@ def main() -> None:
             apple.randomize_position(snake.positions)
 
         if check_self_collision(snake):
-            running = False
+            snake.reset()
+            apple.randomize_position(snake.positions)
+
             screen.fill(BOARD_BACKGROUND_COLOR)
             draw_grid(screen)
 
